@@ -1,3 +1,5 @@
+<img width="1000" height="571" alt="image" src="https://github.com/user-attachments/assets/e47aaf50-85ed-43ee-af1c-0628dac97b14" />
+
 # 🐕‍🦺 Kerberos Protocol Implementation
 
 **Author:** Devesh Kumar  
