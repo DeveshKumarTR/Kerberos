@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" 
+             Name="Kerberos Protocol Implementation" 
+             Language="1033" 
+             Version="1.0.0" 
+             Manufacturer="Devesh Kumar" 
+             UpgradeCode="{12345678-1234-1234-1234-123456789012}">
+        
+        <Package InstallerVersion="200" 
+                 Compressed="yes" 
+                 InstallScope="perMachine"
+                 Description="3-headed dog Kerberos protocol implementation with React Native frontend and Python backend"
+                 Comments="© 2025 Devesh Kumar. All rights reserved." />
+        
+        <MajorUpgrade DowngradeErrorMessage="A newer version of Kerberos Protocol Implementation is already installed." />
+        <MediaTemplate EmbedCab="yes" />
+        
+        <Feature Id="ProductFeature" Title="Kerberos Protocol Implementation" Level="1">
+            <ComponentGroupRef Id="ProductComponents" />
+            <ComponentRef Id="DesktopShortcut" />
+            <ComponentRef Id="StartMenuShortcut" />
+        </Feature>
+        
+        <!-- Directory structure -->
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLFOLDER" Name="KerberosProtocol" />
+            </Directory>
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationProgramsFolder" Name="Kerberos Protocol Implementation" />
+            </Directory>
+            <Directory Id="DesktopFolder" Name="Desktop" />
+        </Directory>
+        
+        <!-- Components -->
+        <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+            <!-- Main application files -->
+            <Component Id="MainExecutable" Guid="{11111111-1111-1111-1111-111111111111}">
+                <File Id="LauncherBat" Source="build\app\launch_kerberos.bat" KeyPath="yes" />
+                <File Id="LauncherPs1" Source="build\app\launch_kerberos.ps1" />
+            </Component>
+            
+            <!-- Backend files -->
+            <Component Id="BackendFiles" Guid="{22222222-2222-2222-2222-222222222222}">
+                <File Id="AppPy" Source="build\app\backend\app.py" KeyPath="yes" />
+                <File Id="RequirementsTxt" Source="build\app\backend\requirements.txt" />
+                <File Id="EnvExample" Source="build\app\backend\.env.example" />
+            </Component>
+            
+            <!-- Frontend files -->
+            <Component Id="FrontendFiles" Guid="{33333333-3333-3333-3333-333333333333}">
+                <File Id="AppTsx" Source="build\app\frontend\App.tsx" KeyPath="yes" />
+                <File Id="PackageJson" Source="build\app\frontend\package.json" />
+                <File Id="AppJson" Source="build\app\frontend\app.json" />
+            </Component>
+        </ComponentGroup>
+        
+        <!-- Desktop shortcut -->
+        <Component Id="DesktopShortcut" Directory="DesktopFolder" Guid="{44444444-4444-4444-4444-444444444444}">
+            <Shortcut Id="DesktopShortcut"
+                      Name="Kerberos Protocol Implementation"
+                      Description="3-headed dog Kerberos protocol implementation with React Native frontend and Python backend"
+                      Target="[INSTALLFOLDER]launch_kerberos.bat"
+                      WorkingDirectory="INSTALLFOLDER"
+                      Icon="KerberosIcon" />
+            <RemoveFolder Id="DesktopFolder" On="uninstall" />
+            <RegistryValue Root="HKCU" Key="Software\Devesh Kumar\Kerberos Protocol Implementation" 
+                          Name="DesktopShortcut" Type="integer" Value="1" KeyPath="yes" />
+        </Component>
+        
+        <!-- Start menu shortcut -->
+        <Component Id="StartMenuShortcut" Directory="ApplicationProgramsFolder" Guid="{55555555-5555-5555-5555-555555555555}">
+            <Shortcut Id="StartMenuShortcut"
+                      Name="Kerberos Protocol Implementation"
+                      Description="3-headed dog Kerberos protocol implementation with React Native frontend and Python backend"
+                      Target="[INSTALLFOLDER]launch_kerberos.bat"
+                      WorkingDirectory="INSTALLFOLDER"
+                      Icon="KerberosIcon" />
+            <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+            <RegistryValue Root="HKCU" Key="Software\Devesh Kumar\Kerberos Protocol Implementation" 
+                          Name="StartMenuShortcut" Type="integer" Value="1" KeyPath="yes" />
+        </Component>
+        
+        <!-- Icon -->
+        <Icon Id="KerberosIcon" SourceFile="kerberos_icon.ico" />
+        
+        <!-- Registry entries -->
+        <Component Id="RegistryEntries" Directory="INSTALLFOLDER" Guid="{66666666-6666-6666-6666-666666666666}">
+            <RegistryKey Root="HKLM" Key="Software\Devesh Kumar\Kerberos Protocol Implementation">
+                <RegistryValue Name="InstallPath" Type="string" Value="[INSTALLFOLDER]" />
+                <RegistryValue Name="Version" Type="string" Value="1.0.0" />
+                <RegistryValue Name="Copyright" Type="string" Value="© 2025 Devesh Kumar. All rights reserved." />
+            </RegistryKey>
+        </Component>
+        
+    </Product>
+</Wix>

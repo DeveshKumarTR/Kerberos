@@ -1,0 +1,35 @@
+{
+  "name": "kerberos-protocol-implementation",
+  "version": "1.0.0",
+  "description": "3-headed dog Kerberos protocol implementation with React Native frontend and Python backend",
+  "author": "Devesh Kumar",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && pip install -r requirements.txt",
+    "dev:frontend": "cd frontend && npm start",
+    "dev:backend": "cd backend && python app.py",
+    "build:frontend": "cd frontend && npm run build",
+    "build:installer": "cd installer && python build_msi.py",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "cd frontend && npm test",
+    "test:backend": "cd backend && python -m pytest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devesh-kumar/kerberos-protocol"
+  },
+  "keywords": [
+    "kerberos",
+    "authentication",
+    "security",
+    "react-native",
+    "python",
+    "claude-ai",
+    "pinecone"
+  ]
+}
